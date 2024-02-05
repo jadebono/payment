@@ -16,7 +16,7 @@ const RetrieveTransactions = () => {
 
   return (
     <div className="container mx-auto my-10 p-4 border rounded-md shadow-lg bg-white">
-      <h2 className="text-2xl font-bold mb-4 text-center text-green-700">
+      <h2 className="text-2xl font-bold mb-4 text-center ">
         Transaction History
       </h2>
       <button
