@@ -3,25 +3,17 @@ import { getTrans } from "../modules/requests";
 
 const RetrieveTransactions = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useState(null);
 
   const handleRetrieveClick = async () => {
     setIsLoading(true);
-
     try {
-      const transactions = await getTrans(); // Fetch the data using the getTrans function
-      console.log(`The response.data contains: ${transactions}`);
-      setTransactions(transactions); // Assuming response.data contains the array of transactions
+      const transactions = await getTrans(); // Assuming getTrans returns the transaction data
+      setTransactions(transactions);
     } catch (error) {
       console.error("Error retrieving transactions:", error);
     }
-
     setIsLoading(false);
-  };
-
-  const getRowStyle = (index) => {
-    // Alternate colors for rows
-    return index % 2 === 0 ? "bg-green-200" : "bg-green-400";
   };
 
   return (
@@ -37,19 +29,32 @@ const RetrieveTransactions = () => {
         {isLoading ? "Retrieving..." : "Retrieve Transactions"}
       </button>
       {transactions && (
-        <div className="mt-4">
-          <h3 className="text-xl font-semibold mb-2">Transactions:</h3>
-          <ul>
-            {transactions.map((transaction, index) => (
-              <li
-                key={transaction._id}
-                className={`mb-2 p-2 ${getRowStyle(index)}`}
-              >
-                Name: {transaction.name}, Email: {transaction.email}, Card
-                Number: {transaction.card_number}, Expiry: {transaction.expiry}
-              </li>
-            ))}
-          </ul>
+        <div className="mt-4 overflow-auto">
+          <table className="min-w-full border-collapse">
+            <thead>
+              <tr>
+                {Object.keys(transactions[0]).map((key) => (
+                  <th key={key} className="border p-2 bg-gray-200">
+                    {key}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {transactions.map((transaction, index) => (
+                <tr
+                  key={transaction._id}
+                  className={index % 2 === 0 ? "bg-green-300" : "bg-green-100"}
+                >
+                  {Object.values(transaction).map((value, idx) => (
+                    <td key={idx} className="border p-2">
+                      {value}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </div>
