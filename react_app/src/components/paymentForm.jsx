@@ -17,6 +17,7 @@ const PaymentForm = () => {
       const response = await charge(json);
       console.log("Response from charge:", response);
       // Handle success response here
+      event.target.reset(); // Reset the form fields of event.target after successful submission
     } catch (error) {
       // Handle error here
       console.error("Error in processing payment:", error);
@@ -100,6 +101,20 @@ const PaymentForm = () => {
             // !! restrict to number only
             pattern="\d*"
             maxLength="3"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md"
+          />
+        </div>
+        <div className="form-group mb-4">
+          <label htmlFor="amount" className="block mb-2">
+            Amount in $
+          </label>
+          <input
+            type="number"
+            id="amount"
+            name="amount"
+            required
+            min="0.01" // Minimum amount
+            step="0.01" // Step for the input
             className="w-full px-3 py-2 border border-gray-300 rounded-md"
           />
         </div>
