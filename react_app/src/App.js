@@ -1,10 +1,10 @@
 import "./App.css";
 import React from "react";
-import PaymentForm from "./components/paymentForm";
+import ToggleComponentsPage from "../src/pages/main.jsx";
 function App() {
   return (
     <div className="App">
-      <PaymentForm />
+      <ToggleComponentsPage />
     </div>
   );
 }
