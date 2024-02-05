@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import { ConnectMDB, CloseMDB } from "./mongoConnect.js";
 import { paymentsRouter } from "./routes/payments.js";
+import { transactionsRouter } from "./routes/transactions.js";
 
 const app = express();
 
@@ -19,6 +20,7 @@ dotenv.config();
 
 // routes
 app.use("/payments", paymentsRouter);
+app.use("/transactions", transactionsRouter);
 
 // connect to db at server start
 ConnectMDB();

@@ -1,22 +1,32 @@
 import React, { useState } from "react";
+import { getTrans } from "../modules/requests";
 
 const RetrieveTransactions = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [transactions, setTransactions] = useState(null);
+  const [transactions, setTransactions] = useState([]);
 
   const handleRetrieveClick = async () => {
     setIsLoading(true);
-    // Placeholder for actual transaction retrieval logic
-    // Example: setTransactions(await fetchTransactions());
-    setTimeout(() => {
-      setIsLoading(false);
-      setTransactions([{ id: 1, amount: "$20.00", date: "2024-02-10" }]); // Mock data
-    }, 2000); // Mock async delay
+
+    try {
+      const transactions = await getTrans(); // Fetch the data using the getTrans function
+      console.log(`The response.data contains: ${transactions}`);
+      setTransactions(transactions); // Assuming response.data contains the array of transactions
+    } catch (error) {
+      console.error("Error retrieving transactions:", error);
+    }
+
+    setIsLoading(false);
+  };
+
+  const getRowStyle = (index) => {
+    // Alternate colors for rows
+    return index % 2 === 0 ? "bg-green-200" : "bg-green-400";
   };
 
   return (
     <div className="container mx-auto my-10 p-4 border rounded-md shadow-lg bg-white">
-      <h2 className="text-2xl font-bold mb-4 text-center ">
+      <h2 className="text-2xl font-bold mb-4 text-center">
         Transaction History
       </h2>
       <button
@@ -30,9 +40,13 @@ const RetrieveTransactions = () => {
         <div className="mt-4">
           <h3 className="text-xl font-semibold mb-2">Transactions:</h3>
           <ul>
-            {transactions.map((transaction) => (
-              <li key={transaction.id} className="mb-2">
-                Amount: {transaction.amount}, Date: {transaction.date}
+            {transactions.map((transaction, index) => (
+              <li
+                key={transaction._id}
+                className={`mb-2 p-2 ${getRowStyle(index)}`}
+              >
+                Name: {transaction.name}, Email: {transaction.email}, Card
+                Number: {transaction.card_number}, Expiry: {transaction.expiry}
               </li>
             ))}
           </ul>

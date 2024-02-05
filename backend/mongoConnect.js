@@ -50,3 +50,14 @@ export async function SaveToDB(col, data) {
     console.log(error);
   }
 }
+
+
+// function to retrieve ALL documents from a collection:
+export async function LoadAllFromDB(col) {
+  try {
+    return await db.collection(col).find({}).toArray(); // Empty filter to retrieve all documents
+  } catch (error) {
+    console.error("Error in LoadFromDB:", error);
+    throw error; // Rethrow the error for handling it in the calling context
+  }
+}
