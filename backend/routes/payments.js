@@ -97,6 +97,7 @@ paymentsRouter.route("/create-checkout-session").post(async (req, res) => {
   // this try-catch block is to test success/cancel routes
   // since payment cannot be completed because this is all
   // test data and test functionality
+  // !! No attempt is made to submit it to the third-party stripe-integrated payment page because payment cannot be completed
   try {
     res.json({ url: "http://localhost:3000/payment-success" });
   } catch {
@@ -104,6 +105,7 @@ paymentsRouter.route("/create-checkout-session").post(async (req, res) => {
   }
 
   // This is the code to redirect to an external payment page
+  // if a payment can actually be made
   // try {
   //   const session = await stripe.checkout.sessions.create({
   //     payment_method_types: ["card"],
