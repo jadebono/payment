@@ -51,7 +51,7 @@ export async function createCheckoutSession(paymentData) {
     const checkoutSessionUrl = response.data.url;
 
     if (checkoutSessionUrl) {
-      // Redirect user to Stripe's Checkout page
+      // Redirect user to success/cancel page
       window.location.href = checkoutSessionUrl;
     } else {
       console.error("No checkout session URL returned");
