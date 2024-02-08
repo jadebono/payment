@@ -21,6 +21,14 @@
 1. Receives success or failure response that redirect to a success/cancel pages on the frontend;
 1. Retrieves a list of all transaction data from MongoDB;
 
+## `NOTA BENE`
+
+1. The functionality is largely hypothetical since a successful payment cannot be completed;
+1. The app can however send payment details to the server;
+1. Save the details in Mongo;
+1. Simulate response of a successful/cancelled payment;
+1. Redirect to a success/cancel page on the frontend depending on the simulated response
+
 ---
 
 # Frontend
