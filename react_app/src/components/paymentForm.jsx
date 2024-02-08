@@ -1,3 +1,4 @@
+// !! could be redundant
 import React from "react";
 import { charge } from "../modules/requests";
 

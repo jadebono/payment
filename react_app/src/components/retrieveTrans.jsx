@@ -21,13 +21,15 @@ const RetrieveTransactions = () => {
       <h2 className="text-2xl font-bold mb-4 text-center">
         Transaction History
       </h2>
-      <button
-        onClick={handleRetrieveClick}
-        disabled={isLoading}
-        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-4"
-      >
-        {isLoading ? "Retrieving..." : "Retrieve Transactions"}
-      </button>
+      <div className="flex justify-center items-center h-full">
+        <button
+          onClick={handleRetrieveClick}
+          disabled={isLoading}
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-4"
+        >
+          {isLoading ? "Retrieving..." : "Retrieve Transactions"}
+        </button>
+      </div>
       {transactions && (
         <div className="mt-4 overflow-auto">
           <table className="min-w-full border-collapse">

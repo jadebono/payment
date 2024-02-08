@@ -1,0 +1,21 @@
+1. install react router - DONE
+2. install redux - not necessary
+3. redo payment component to send: - DONE
+name
+surname
+time and date of transaction
+payment_method_types => for now send "card"
+line_items =>[{
+  price_data: {
+            currency: "usd",
+            product_data: {
+              name: "T-shirt",
+            },
+            unit_amount: 2000, // in cents
+          },
+          quantity: 1,
+}]
+4. create success route - DONE
+5. create cancel route - DONE
+6. Save transaction data to mongo - DONE
+7. Retrieve transactions at will - DONE
