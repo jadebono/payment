@@ -145,7 +145,7 @@ node main.js
 
 ## `MongoDB`
 
-Database: ecom
+Database: ecom  
 Database name: payprocessor  
 Collections: payments
 
